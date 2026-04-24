@@ -1,0 +1,438 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Gill+Sans:wght@400;700&display=swap');
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  .card-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+    background: transparent;
+    font-family: 'Gill Sans MT', 'Gill Sans', Calibri, sans-serif;
+  }
+
+  .card {
+    width: 340px;
+    min-height: 480px;
+    border-radius: 16px;
+    border: 8px solid #d4a017;
+    background: linear-gradient(160deg, #2a4a7f 0%, #1a3060 40%, #0d1f45 100%);
+    box-shadow: 0 0 0 3px #f5e06e, 0 0 0 6px #c8860a, 0 8px 40px rgba(0,0,0,0.6), inset 0 0 60px rgba(100,160,255,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(100,200,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 14px 4px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pokemon-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f0e040;
+    text-shadow: 1px 1px 0 #8B6914, 0 0 8px rgba(255,220,50,0.4);
+    letter-spacing: 0.5px;
+    line-height: 1;
+  }
+
+  .pokemon-sub {
+    font-size: 9px;
+    color: #a0c8ff;
+    font-style: italic;
+    margin-top: 1px;
+  }
+
+  .hp-block {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hp-label {
+    font-size: 9px;
+    color: #90b0e0;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .hp-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f0e040;
+    text-shadow: 1px 1px 0 #8B6914;
+    line-height: 1;
+  }
+
+  .type-icon {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #60d0ff, #0060a0);
+    border: 1.5px solid #80e8ff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+  }
+
+  .image-frame {
+    margin: 4px 12px 8px;
+    border-radius: 8px;
+    border: 3px solid #f5e06e;
+    background: linear-gradient(135deg, #1a3a6a 0%, #0d2040 50%, #091828 100%);
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 50% 100%, rgba(50,150,255,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 20%, rgba(100,200,255,0.08) 0%, transparent 50%);
+  }
+
+ .avatar-circle {
+  width: 100px; 
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #f5e06e;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(100,180,255,0.4);
+}
+
+.avatar-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+.holo-effect {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(0,255,255,0.15) 35%,
+    rgba(255,0,255,0.15) 50%,
+    rgba(255,255,0,0.15) 65%,
+    transparent 80%
+  );
+  mix-blend-mode: screen;
+  animation: holoMove 3s linear infinite;
+}
+
+@keyframes holoMove {
+  0% {
+    transform: translateX(-100%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(10deg);
+  }
+}
+
+  .years-badge {
+    position: absolute;
+    bottom: 8px; right: 10px;
+    background: rgba(10,30,70,0.85);
+    border: 1px solid #f5e06e;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 9px;
+    color: #f0e040;
+    z-index: 2;
+  }
+
+  .flavor-strip {
+    margin: 0 12px 6px;
+    background: rgba(240,224,64,0.08);
+    border: 1px solid rgba(245,224,110,0.3);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 9px;
+    color: #b8d4f8;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .moves-section {
+    padding: 0 10px;
+  }
+
+  .move {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 6px 10px;
+    margin-bottom: 4px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 6px;
+    border: 0.5px solid rgba(245,224,110,0.2);
+  }
+
+  .move-icons {
+    display: flex;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .energy {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .e-tech { background: radial-gradient(circle at 40% 35%, #80c0ff, #2060c0); }
+  .e-brain { background: radial-gradient(circle at 40% 35%, #d080ff, #6020a0); }
+  .e-fire { background: radial-gradient(circle at 40% 35%, #ff9040, #c04010); }
+  .e-normal { background: radial-gradient(circle at 40% 35%, #d0c890, #908050); }
+
+  .move-body {
+    flex: 1;
+  }
+
+  .move-name-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+  }
+
+  .move-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: #f0e040;
+    letter-spacing: 0.3px;
+  }
+
+  .move-dmg {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .move-desc {
+    font-size: 9px;
+    color: #90b0d8;
+    line-height: 1.3;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 6px 12px 10px;
+    margin-top: 4px;
+    border-top: 0.5px solid rgba(245,224,110,0.2);
+  }
+
+  .footer-col {
+    text-align: center;
+  }
+
+  .footer-label {
+    font-size: 8px;
+    color: #708090;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .footer-val {
+    font-size: 9px;
+    color: #a0b8d0;
+  }
+
+  .weakness-icon {
+    font-size: 14px;
+  }
+
+  .card-number {
+    font-size: 9px;
+    color: #708090;
+    text-align: right;
+  }
+
+  .holographic-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 0%,
+      rgba(100,180,255,0.03) 30%,
+      rgba(255,200,100,0.04) 50%,
+      rgba(100,180,255,0.03) 70%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 10;
+    border-radius: 8px;
+  }
+
+  .stars {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .star {
+    position: absolute;
+    width: 2px; height: 2px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+  }
+</style>
+
+<div class="card-wrap">
+  <div class="card" id="mainCard">
+    <div class="holographic-overlay"></div>
+    
+    <div class="stars" id="stars"></div>
+    
+    <div class="card-header">
+      <div>
+        <div class="pokemon-name">Oscar Parra</div>
+        <div class="pokemon-sub">QA Lead Pokémon · Stage 3</div>
+      </div>
+      <div class="hp-block">
+        <span class="hp-label">HP</span>
+        <span class="hp-value">140</span>
+        <div class="type-icon">💻</div>
+      </div>
+    </div>
+
+    <div class="image-frame">
+      <div class="avatar-circle"><img src="op-pic.png" alt="Oscar Parra" />  
+        <div class="holo-effect"></div></div>
+      <div class="years-badge">+10 años EXP</div>
+    </div>
+
+    <div class="flavor-strip">
+      Pokémon QA Maestro · Tipo: Tech · LV 35 · ISTQB #18-CTFL-02279-USA
+    </div>
+
+    <div class="moves-section">
+
+      <div class="move">
+        <div class="move-icons">
+          <div class="energy e-tech"></div>
+          <div class="energy e-tech"></div>
+        </div>
+        <div class="move-body">
+          <div class="move-name-row">
+            <span class="move-name">Automation Storm</span>
+            <span class="move-dmg">80</span>
+          </div>
+          <div class="move-desc">Lanza un framework completo de Selenium + Java en C#. Si el oponente tiene bugs, sufre el doble de daño.</div>
+        </div>
+      </div>
+
+      <div class="move">
+        <div class="move-icons">
+          <div class="energy e-brain"></div>
+          <div class="energy e-fire"></div>
+        </div>
+        <div class="move-body">
+          <div class="move-name-row">
+            <span class="move-name">Agile Mind Scrum</span>
+            <span class="move-dmg">60</span>
+          </div>
+          <div class="move-desc">Organiza al equipo en sprints perfectos con Azure DevOps. Los aliados recuperan 20 HP cada turno.</div>
+        </div>
+      </div>
+
+      <div class="move">
+        <div class="move-icons">
+          <div class="energy e-tech"></div>
+          <div class="energy e-brain"></div>
+          <div class="energy e-normal"></div>
+        </div>
+        <div class="move-body">
+          <div class="move-name-row">
+            <span class="move-name">Power Automate Blast</span>
+            <span class="move-dmg">100</span>
+          </div>
+          <div class="move-desc">Automatiza procesos con Microsoft Power Automate y Logic Apps. El oponente queda paralizado 2 turnos.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card-footer">
+      <div class="footer-col">
+        <div class="footer-label">Weakness</div>
+        <div class="weakness-icon">🐛</div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-label">Resistance</div>
+        <div class="footer-val">Manual Testing ×½</div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-label">Retreat Cost</div>
+        <div style="display:flex;gap:2px;justify-content:center">
+          <div class="energy e-normal" style="width:12px;height:12px"></div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="card-number">🎓 UANL · Macquarie<br>EN/ES · 1/1 (Holographic)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 25; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.opacity = (Math.random() * 0.4 + 0.1).toFixed(2);
+    s.style.width = s.style.height = (Math.random() * 2 + 1) + 'px';
+    starsEl.appendChild(s);
+  }
+
+  const card = document.getElementById('mainCard');
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    const rotX = (y - 0.5) * -12;
+    const rotY = (x - 0.5) * 12;
+    card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.03)`;
+    card.style.transition = 'transform 0.05s ease';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+    card.style.transition = 'transform 0.4s ease';
+  });
+</script>
