@@ -13,6 +13,7 @@
     background: transparent;
     font-family: 'Gill Sans MT', 'Gill Sans', Calibri, sans-serif;
   }
+  
 
   .card {
     width: 340px;
@@ -318,9 +319,13 @@
     <div class="stars" id="stars"></div>
     
     <div class="card-header">
+      <div style="position:absolute; top:1px; right:100px; z-index:5;">
+        <button onclick="setLang('es')">🇪🇸</button>
+       <button onclick="setLang('en')">🇺🇸</button>
+    </div>
       <div>
-        <div class="pokemon-name">Oscar Parra</div>
-        <div class="pokemon-sub">QA Lead Pokémon · Stage 3</div>
+        <div class="pokemon-name" id="name">Oscar Parra</div>
+        <div class="pokemon-sub"id="subtitle">QA Lead Pokémon · Stage 3</div>
       </div>
       <div class="hp-block">
         <span class="hp-label">HP</span>
@@ -332,10 +337,10 @@
     <div class="image-frame">
       <div class="avatar-circle"><img src="op-pic2.jpeg" alt="Oscar Parra" />  
         <div class="holo-effect"></div></div>
-      <div class="years-badge">+10 años EXP</div>
+      <div class="years-badge"id="years">+10 años EXP</div>
     </div>
 
-    <div class="flavor-strip">
+    <div class="flavor-strip" id="flavor">
       Pokémon QA Maestro · Tipo: Tech · LV 35 · ISTQB #18-CTFL-02279-USA
     </div>
 
@@ -348,10 +353,10 @@
         </div>
         <div class="move-body">
           <div class="move-name-row">
-            <span class="move-name">Automation Storm</span>
+            <span class="move-name"id="move1-name">Automation Storm</span>
             <span class="move-dmg">80</span>
           </div>
-          <div class="move-desc">Lanza un framework completo de PlayWright + JavaScript. Si el oponente tiene bugs, sufre el doble de daño.</div>
+          <div class="move-desc"id="move1-desc">Lanza un framework completo de PlayWright + JavaScript. Si el oponente tiene bugs, sufre el doble de daño.</div>
         </div>
       </div>
 
@@ -362,10 +367,10 @@
         </div>
         <div class="move-body">
           <div class="move-name-row">
-            <span class="move-name">Agile Mind Scrum</span>
+            <span class="move-name"id="move2-name">Agile Mind Scrum</span>
             <span class="move-dmg">60</span>
           </div>
-          <div class="move-desc">Organiza al equipo en sprints perfectos con Azure DevOps. Los aliados recuperan 20 HP cada turno.</div>
+          <div class="move-desc"id="move2-desc">Organiza al equipo en sprints perfectos con Azure DevOps. Los aliados recuperan 20 HP cada turno.</div>
         </div>
       </div>
 
@@ -377,10 +382,10 @@
         </div>
         <div class="move-body">
           <div class="move-name-row">
-            <span class="move-name">Power Automate Blast</span>
+            <span class="move-name"  id="move3-name">Power Automate Blast</span>
             <span class="move-dmg">100</span>
           </div>
-          <div class="move-desc">Automatiza procesos con Microsoft Power Automate y Logic Apps. El oponente queda paralizado 2 turnos.</div>
+          <div class="move-desc"id="move3-desc">Automatiza procesos con Microsoft Power Automate y Logic Apps. El oponente queda paralizado 2 turnos.</div>
         </div>
       </div>
          <div class="move">
@@ -391,10 +396,10 @@
         </div>
         <div class="move-body">
           <div class="move-name-row">
-            <span class="move-name">API Validation Hurricane</span>
+            <span class="move-name"  id="move4-name">API Validation Hurricane</span>
             <span class="move-dmg">95</span>
           </div>
-          <div class="move-desc">Automatiza validaciones de API con Postman, Newman y Karate DSL. El oponente sufre 100 de daño.</div>
+          <div class="move-desc"id="move4-desc">Automatiza validaciones de API con Postman, Newman y Karate DSL. El oponente sufre 100 de daño.</div>
         </div>
       </div>
 
@@ -402,15 +407,15 @@
 
     <div class="card-footer">
       <div class="footer-col">
-        <div class="footer-label">Weakness</div>
+        <div class="footer-label"id="weakness-label">Weakness</div>
         <div class="weakness-icon">🐛</div>
       </div>
       <div class="footer-col">
-        <div class="footer-label">Resistance</div>
+        <div class="footer-label"id="resistance-label">Resistance</div>
         <div class="footer-val">Manual Testing ×½</div>
       </div>
       <div class="footer-col">
-        <div class="footer-label">Retreat Cost</div>
+        <div class="footer-label"id="retreat-label">Retreat Cost</div>
         <div style="display:flex;gap:2px;justify-content:center">
           <div class="energy e-normal" style="width:12px;height:12px"></div>
         </div>
@@ -449,4 +454,75 @@
     card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
     card.style.transition = 'transform 0.4s ease';
   });
+  const translations = {
+  es: {
+    subtitle: "QA Lead Pokémon · Etapa 3",
+    flavor: "Pokémon QA Maestro · Tipo: Tech · LV 35 · ISTQB #18-CTFL-02279-USA",
+
+    move1Name: "Tormenta de Automatización",
+    move1Desc: "Lanza un framework completo de Selenium + Java. Si el oponente tiene bugs, recibe daño doble.",
+
+    move2Name: "Mente Ágil Scrum",
+    move2Desc: "Organiza al equipo en sprints perfectos con Azure DevOps. Los aliados recuperan 20 HP.",
+
+    move3Name: "Explosión Power Automate",
+    move3Desc: "Automatiza procesos con Power Automate. El oponente queda paralizado 2 turnos.",
+
+    move4Name: "Huracán Validación API",
+    move4Desc: "Automatiza validaciones con Postman, Newman y Karate DSL. El oponente recibe 100 de daño.",
+
+    weakness: "Debilidad",
+    resistance: "Resistencia",
+    retreat: "Costo Retirada"
+  },
+
+  en: {
+    subtitle: "QA Lead Pokémon · Stage 3",
+    flavor: "Master QA Pokémon · Type: Tech · LV 35 · ISTQB #18-CTFL-02279-USA",
+
+    move1Name: "Automation Storm",
+    move1Desc: "Launches a full Selenium + Java framework. If opponent has bugs, deals double damage.",
+
+    move2Name: "Agile Mind Scrum",
+    move2Desc: "Organizes the team into perfect sprints using Azure DevOps. Allies recover 20 HP.",
+
+    move3Name: "Power Automate Blast",
+    move3Desc: "Automates processes using Power Automate. Opponent is paralyzed for 2 turns.",
+
+    move4Name: "API Validation Hurricane",
+    move4Desc: "Automates API validation with Postman, Newman and Karate DSL. Deals 100 damage.",
+
+    weakness: "Weakness",
+    resistance: "Resistance",
+    retreat: "Retreat Cost"
+  }
+};
+
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
+
+  document.getElementById("subtitle").innerText = translations[lang].subtitle;
+  document.getElementById("flavor").innerText = translations[lang].flavor;
+
+  document.getElementById("move1-name").innerText = translations[lang].move1Name;
+  document.getElementById("move1-desc").innerText = translations[lang].move1Desc;
+
+  document.getElementById("move2-name").innerText = translations[lang].move2Name;
+  document.getElementById("move2-desc").innerText = translations[lang].move2Desc;
+
+  document.getElementById("move3-name").innerText = translations[lang].move3Name;
+  document.getElementById("move3-desc").innerText = translations[lang].move3Desc;
+
+  document.getElementById("move4-name").innerText = translations[lang].move4Name;
+  document.getElementById("move4-desc").innerText = translations[lang].move4Desc;
+
+  document.getElementById("weakness-label").innerText = translations[lang].weakness;
+  document.getElementById("resistance-label").innerText = translations[lang].resistance;
+  document.getElementById("retreat-label").innerText = translations[lang].retreat;
+}
+
+// cargar idioma guardado
+const savedLang = localStorage.getItem("lang") || "es";
+setLang(savedLang);
 </script>
+
